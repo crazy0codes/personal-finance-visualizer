@@ -37,6 +37,7 @@ export default function TransactionsContainer() {
   const fetchTransactions = async () => {
     try {
       const response = await fetch(`${apiUrl}/api/transaction`)
+      console.log(response)
       if (response.ok) {
         const data = await response.json()
         setTransactions(data.transactions || [])
