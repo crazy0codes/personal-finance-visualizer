@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react"
 import { AnalyticsView } from "../views/AnalyticsView"
-import process from "process"
+const apiUrl = import.meta.env.VITE_API_URL;
+
+
 
 export default function AnalyticsContainer() {
     const [transactions, setTransactions] = useState([])
@@ -15,8 +17,8 @@ export default function AnalyticsContainer() {
     const fetchData = async () => {
         try {
             const [transactionsRes, budgetsRes] = await Promise.all([
-                fetch(`${process.env.REACT_APP_API_URL}/api/transaction`),
-                fetch(`${process.env.REACT_APP_API_URL}/api/budgets?month=${selectedMonth}`),
+                fetch(`${apiUrl}/api/transaction`),
+                fetch(`${apiUrl}/api/budgets?month=${selectedMonth}`),
             ])
 
             if (transactionsRes.ok) {

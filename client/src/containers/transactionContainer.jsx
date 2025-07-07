@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { toast } from "sonner"
 import { TransactionView } from "../views/transactionView"
-import process from "process"
+const apiUrl = import.meta.env.VITE_API_URL;
 
 const categories = [
   "Groceries",
@@ -36,7 +36,7 @@ export default function TransactionsContainer() {
 
   const fetchTransactions = async () => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/transaction`)
+      const response = await fetch(`${apiUrl}/api/transaction`)
       if (response.ok) {
         const data = await response.json()
         setTransactions(data.transactions || [])
@@ -59,8 +59,8 @@ export default function TransactionsContainer() {
     try {
 
       const url = editingTransaction
-        ? `${process.env.REACT_APP_API_URL}/api/transaction/update/${editingTransaction._id}`
-        : "${process.env.REACT_APP_API_URL}/api/transaction/add"
+        ? `${apiUrl}/api/transaction/update/${editingTransaction._id}`
+        : "${apiUrl}/api/transaction/add"
 
       const method = editingTransaction ? "PUT" : "POST"
 
@@ -106,7 +106,7 @@ export default function TransactionsContainer() {
     if (!confirm("Are you sure you want to delete this transaction?")) return
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/transaction/delete/${id}`, {
+      const response = await fetch(`${apiUrl}/api/transaction/delete/${id}`, {
         method: "DELETE",
       })
 

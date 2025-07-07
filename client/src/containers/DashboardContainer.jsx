@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from "react"
 import { DashboardView } from "../views/DashboardView.jsx"
+const apiUrl = import.meta.env.VITE_API_URL;
 
 export default function DashbaordContainer() {
     const [transactions, setTransactions] = useState([])
@@ -14,8 +15,8 @@ export default function DashbaordContainer() {
     const fetchData = async () => {
         try {
             const [transactionsRes, budgetsRes] = await Promise.all([
-                fetch(`${process.env.REACT_APP_API_URL}/api/transaction`),
-                fetch(`${process.env.REACT_APP_API_URL}/api/budgets?month=${new Date().toISOString().slice(0, 7)}`),
+                fetch(`${apiUrl}/api/transaction`),
+                fetch(`${apiUrl}/api/budgets?month=${new Date().toISOString().slice(0, 7)}`),
             ])
 
             if (transactionsRes.ok) {

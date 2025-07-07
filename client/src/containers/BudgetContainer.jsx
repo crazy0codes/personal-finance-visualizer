@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react"
 import { toast } from "sonner"
 import { BudgetsView } from "../views/BudgetsView"
-import process from "process"
+const apiUrl = import.meta.env.VITE_API_URL;
 
 
 const categories = [
@@ -37,8 +37,8 @@ export default function BudgetsContainer() {
   const fetchData = async () => {
     try {
       const [budgetsRes, transactionsRes] = await Promise.all([
-        fetch(`${process.env.REACT_APP_API_URL}/api/budgets?month=${selectedMonth}`),
-        fetch(`${process.env.REACT_APP_API_URL}/api/transaction`),
+        fetch(`${apiUrl}/api/budgets?month=${selectedMonth}`),
+        fetch(`${apiUrl}/api/transaction`),
       ])
 
       if (budgetsRes.ok) {
@@ -66,7 +66,7 @@ export default function BudgetsContainer() {
     }
 
     try {
-      const response = await fetch("${process.env.REACT_APP_API_URL}/api/budgets/add", {
+      const response = await fetch("${apiUrl}/api/budgets/add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
