@@ -43,6 +43,7 @@ export default function TransactionsContainer() {
         setTransactions(data.transactions || [])
       }
     } catch (error) {
+      console.log(error)
       toast.error("Failed to fetch transactions")
     } finally {
       setLoading(false)
