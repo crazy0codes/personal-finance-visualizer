@@ -62,7 +62,7 @@ export default function TransactionsContainer() {
 
       const url = editingTransaction
         ? `${apiUrl}/api/transaction/update/${editingTransaction._id}`
-        : "${apiUrl}/api/transaction/add"
+        : `${apiUrl}/api/transaction/add`
 
       const method = editingTransaction ? "PUT" : "POST"
 
@@ -88,6 +88,7 @@ export default function TransactionsContainer() {
         fetchTransactions()
       } else {
         const error = await response.json()
+        console.log(error)
         toast.error(error.message || "Failed to save transaction")
       }
     } catch (error) {

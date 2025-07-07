@@ -66,7 +66,7 @@ export default function BudgetsContainer() {
     }
 
     try {
-      const response = await fetch("${apiUrl}/api/budgets/add", {
+      const response = await fetch(`${apiUrl}/api/budgets/add`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
