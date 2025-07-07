@@ -79,6 +79,8 @@ export default function TransactionsContainer() {
         }),
       })
 
+      console.log(response)
+
       if (response.ok) {
         toast.success(editingTransaction ? "Transaction updated successfully" : "Transaction added successfully")
         setIsDialogOpen(false)
@@ -89,6 +91,7 @@ export default function TransactionsContainer() {
         toast.error(error.message || "Failed to save transaction")
       }
     } catch (error) {
+      console.log(error)
       toast.error("Failed to save transaction")
     }
   }
